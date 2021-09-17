@@ -8,6 +8,7 @@ $dime_value = .10;
 $quarter_value = .25;
 $half_dollar_value = .50;
 
+
 # Define 4 more variables, which will each
 # represent how many of each coin is in the bank
 $pennies = 300;
@@ -16,30 +17,8 @@ $dimes = 0;
 $quarters = 125;
 $half_dollars = 33;
 
+
 # Add up how much money is in the piggy bank
 $total = ($pennies * $penny_value) + ($nickels * $nickel_value) + ($dimes * $dime_value) + ($quarters * $quarter_value) + ($half_dollars * $half_dollar_value);
 
-?>
-<!DOCTYPE html>
-<html lang='en'>
-
-<head>
-
-    <title>PHPiggy Bank</title>
-    <meta charset='utf-8'>
-    <link href=data:, rel=icon>
-
-</head>
-
-<body>
-
-    <img alt='PHPiggy Bank Logo' src='https://s3.amazonaws.com/making-the-internet/php-piggy-bank-logo@2x.png'
-        style='width:202px;'>
-
-    <p>
-        You have $<?php echo $total; ?> in your piggy bank.
-    </p>
-
-</body>
-
-</html>
+require 'bank-view.php';
