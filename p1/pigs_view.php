@@ -40,7 +40,7 @@
             <li> Pig Out = Zeros total round pts </li>
     </ul>
 
-    <h2> Instructions </h2>
+    <h2> Game Mechanics </h2>
     <ul>
         <li> <strong>Player 1</strong> picks up both pigs. </li>
         <li> <strong>Player 1</strong> rolls both pigs. </li>
@@ -59,6 +59,8 @@
         <li> If <strong>Player 2</strong> doesn't reach 100, the turn goes to Player A </li>
         <br>
         <li> The Players continue to go back and forth until someone reaches 100 in a single round of rolling.
+        </li>
+        <li> If both players reach or exceed 100, the player with the larger score ultimately wins.
         </li>
     </ul>
 

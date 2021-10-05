@@ -36,7 +36,7 @@ $j = 0;
 $player1_turn_results = [];
 $player2_turn_results = [];
 
-
+//game loop//
 for ($j = 0; $j < 5; $j++) {
     
     $player1_points = [];
@@ -177,7 +177,7 @@ for ($j = 0; $j < 5; $j++) {
                     break;
                 }
         };
-    
+    //score clause for game loop//
     if (($player1_score >= $win_score) or ($player2_score >= $win_score)) {
         if ($player1_score == $player2_score) {
             $game_result = "Tie!";
