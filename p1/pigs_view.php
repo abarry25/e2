@@ -37,37 +37,47 @@
             <li> Double Razorback = 20 pts </li>
             <li> Double Trotter = 20 pts </li>
             <li> Double Leaning Jowler = 60 pts </li>
-            <li> Pig Out = zeroes total round pts </li>
+            <li> Pig Out = Zeros total round pts </li>
     </ul>
 
     <h2> Instructions </h2>
     <ul>
-        <li> Player 1 picks up both pigs. </li>
-        <li> Player 1 rolls both pigs. </li>
-        <li> Player 1 accumlates the total points gained by that roll. </li>
+        <li> <strong>Player 1</strong> picks up both pigs. </li>
+        <li> <strong>Player 1</strong> rolls both pigs. </li>
+        <li> <strong>Player 1</strong> accumlates the total points gained by that roll. </li>
         <li> Points are scored based on how the pigs land. </li>
-        <li> Player 1 continues to roll and gain points for each roll. </li>
-        <li> Player 1 stops rolling when they either reach 100, or they lose all their points in a "Pig Out".</li>
-        <li> If Player 1 reaches 100pts, they win! </li>
-        <li> If Player 1 doesn't reach 100, the turn goes to Player B. </li>
+        <li> <strong>Player 1</strong> continues to roll and gain points for each roll. </li>
+        <li> <strong>Player 1</strong> stops rolling when they either reach 100, or they lose all their points in a "Pig
+            Out".</li>
+        <li> If <strong>Player 1</strong> reaches 100pts, they win! </li>
+        <li> If <strong>Player 1</strong> doesn't reach 100, the turn goes to Player B. </li>
         <br>
-        <li> Player 2 begins to roll and accumulate points. </li>
-        <li> Player 2 stops rolling when they either reach 100, or they lose all their points in a "Pig Out".</li>
-        <li> If Player 2 reaches 100pts, they win! </li>
-        <li> If Player 2 doesn't reach 100, the turn goes to Player A </li>
+        <li> <strong>Player 2</strong> begins to roll and accumulate points. </li>
+        <li> <strong>Player 2</strong>stops rolling when they either reach 100, or they lose all their points in a "Pig
+            Out".</li>
+        <li> If <strong>Player 2</strong> reaches 100pts, they win! </li>
+        <li> If <strong>Player 2</strong> doesn't reach 100, the turn goes to Player A </li>
+        <br>
         <li> The Players continue to go back and forth until someone reaches 100 in a single round of rolling.
         </li>
     </ul>
 
     <h2> Results </h2>
-    <li> The game finished on turn <?php echo $i + 1 ?></li>
-    <li> Player 1's final round rolls: <?php echo $player1_rolls_display ?></li>
-    <li> Player 1's final score is <?php echo $player1_score ?></li>
-    <li> Player 2's final round rolls: <?php echo $player2_rolls_display ?></li>
-    <li> Player 2's final score: <?php echo $player2_score ?></li>
-    <li> The result of the game is that <?php echo $game_result ?></li>
+
+    <ul>
+        <li> The game finished on turn <?php echo $i + 1 ?></li>
+        <li> <strong>Player 1's</strong> final round rolls: <?php echo $player1_rolls_display ?></li>
+        <li> <strong>Player 1's</strong> final score is <?php echo $player1_score ?></li>
+        <li> <strong>Player 2's</strong> final round rolls: <?php echo $player2_rolls_display ?></li>
+        <li> <strong>Player 2's</strong> final score: <?php echo $player2_score ?></li>
+        <li> The result of the game is that <?php echo $game_result ?></li>
+    </ul>
+
+    <ul>
+        <li> The result of the game is that <?php echo $game_result ?></li>
+    </ul>
 
 
 </body>
 
-</html>
+</html>S

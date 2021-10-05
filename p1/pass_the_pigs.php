@@ -44,8 +44,6 @@ for ($j = 0; $j < 5; $j++) {
     $player1_rolls = [];
     $player2_rolls = [];
 
-    $player1_roll_history = [];
-    $player2_roll_history = [];
 
  //Start of Loop #1 : Player 1's Roll   
     for ($i = 0; $i < $player_turns; $i++) {
@@ -112,16 +110,8 @@ for ($j = 0; $j < 5; $j++) {
             $game_over = true;
             break;
             }
-        array_push($player1_roll_history, $read1_out);
-        var_dump($player1_roll_history);
     };
     
-    $turn1_results = '';
-    foreach ($player1_roll_history as $round_roll) {
-    $turn1_results = $turn1_results . $round_roll . '...';
-    }
-
-    array_push($player1_turn_results, $turn1_results);
 
     //Start of Loop #2 : Player 2's Roll
     for ($i = 0; $i < $player_turns; $i++) {
@@ -164,7 +154,6 @@ for ($j = 0; $j < 5; $j++) {
                     // var_dump($player2_score);
                 }
     
-            
             } else {
                 if (($pig_a_position == 'left' and $pig_b_position == 'right') or ($pig_a_position == 'right' and $pig_b_position == 'left')) {
                     $player2_score = 0;
@@ -187,17 +176,9 @@ for ($j = 0; $j < 5; $j++) {
                     $game_over = true;
                     break;
                 }
-            array_push($player2_roll_history, $read2_out);
-            var_dump($player2_roll_history);
         };
     
     if (($player1_score >= $win_score) or ($player2_score >= $win_score)) {
-            // $results [] = [
-            //     'Player1' => $player1_score,
-            //     'Player2' => $player2_score,
-            //     'Player1_read' => $read1_out,
-            //     'Player2_read' => $read2_out,
-            // ];
         if ($player1_score == $player2_score) {
             $game_result = "Tie!";
         } elseif ($player1_score > $player2_score) {
@@ -207,21 +188,6 @@ for ($j = 0; $j < 5; $j++) {
         }
         break;
     };
-
-    $turn2_results = '';
-    foreach ($player2_roll_history as $round_roll) {
-    $turn2_results = $turn2_results . $round_roll . '...';
-    }
-
-    array_push($player2_turn_results, $turn2_results);
-    
-    $results [] = [
-                'Player1' => $player1_score,
-                'Player2' => $player2_score,
-                'Player1_read' => $player1_roll_history,
-                'Player2_read' => $player2_roll_history,
-            ];
-
 };
 
 
