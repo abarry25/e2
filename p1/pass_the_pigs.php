@@ -203,15 +203,5 @@ foreach ($player2_rolls as $rolls) {
 $player2_rolls_display = $player2_rolls_display . $rolls . '... ';
 }
 
-$player1_points_display = '';
-foreach ($player1_points as $points) {
-$player1_points_display = $player1_points_display . $points. '... ';
-}
-
-$player2_points_display = '';
-foreach ($player2_points as $points) {
-$player2_points_display = $player2_points_display . $points. '... ';
-}
-
 
 require 'pigs_view.php';
