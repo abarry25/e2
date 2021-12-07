@@ -1,0 +1,270 @@
+/*major css */
+html,
+body {
+  height: 100%;
+}
+
+html {
+  display: table;
+  margin: auto;
+}
+
+body {
+  background-color: #fa9a88;
+  align-content: center;
+}
+
+.body {
+  font-family: "Poppins", sans-serif;
+  color: white;
+}
+
+main {
+  text-align: center;
+  color: white;
+  font-family: "Poppins", sans-serif;
+}
+
+a#rulespage {
+  text-decoration: underline;
+}
+
+/*navigation css */
+
+.topnav {
+  list-style-type: none;
+  color: white;
+  margin-bottom: 10px;
+  text-align: center;
+  height: 38px;
+}
+
+ul.topnav {
+  padding-inline-end: 40px;
+  padding-top: 10px;
+  padding-bottom: 50px;
+}
+
+.topnav li {
+  font-family: "Poppins", sans-serif;
+  display: inline-block;
+  font-size: 18px;
+  padding: 18px;
+}
+
+/* link css */
+
+a:link {
+  color: white;
+  text-decoration: none;
+}
+
+a:visited {
+  color: white;
+  text-decoration: none;
+}
+a:hover {
+  color: #a6685d;
+  text-decoration: none;
+}
+
+/* Play Specifics */
+.title {
+  font-family: "Poppins", sans-serif;
+  color: white;
+  font-size: xx-large;
+}
+
+/*scoring*/
+
+img.pigPos {
+  opacity: 75%;
+  align-content: center;
+}
+
+div.positions {
+  display: block;
+  margin-left: 33%;
+  margin-right: 33%;
+  list-style-type: none;
+  font-family: "Poppins", sans-serif;
+  color: white;
+  text-align: center;
+  border-radius: 25px;
+  border-style: hidden;
+  background-color: #db8879;
+}
+
+div.positions1 {
+  display: block;
+  margin-left: 33%;
+  margin-right: 33%;
+  list-style-type: none;
+  font-family: "Poppins", sans-serif;
+  color: white;
+  text-align: center;
+  border-radius: 25px;
+  border-style: hidden;
+  background-color: #db8879;
+}
+
+ul.mechanics {
+  display: block;
+  margin-left: 30%;
+  margin-right: 30%;
+  list-style-type: none;
+  font-family: "Poppins", sans-serif;
+  color: white;
+  padding: 0;
+  text-align: left;
+}
+
+/*scoring flexbox*/
+
+/* General */
+.btn {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  outline: none;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+  border-radius: 500px;
+  transition-property: background-color, border-color, color, box-shadow, filter;
+  transition-duration: 0.3s;
+  border: 1px solid transparent;
+  letter-spacing: 2px;
+  min-width: 160px;
+  text-transform: uppercase;
+  white-space: normal;
+  font-weight: 700;
+  text-align: center;
+  padding: 17px 48px;
+  color: #fff;
+  background-color: #f4cbbc;
+  height: 48px;
+}
+.btn:hover {
+  transform: scale(1.04);
+  background-color: #a6685d;
+}
+
+img.pig {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  opacity: 75%;
+}
+
+ul.results {
+  display: block;
+  list-style-type: none;
+  margin-left: 5%;
+  margin-right: 5%;
+  padding: 1em;
+  border-radius: 25px;
+  border-style: hidden;
+  text-align: center;
+}
+
+p {
+  display: block;
+  margin-left: 30%;
+  margin-right: 30%;
+  text-align: left;
+}
+h2#sectitle {
+  display: block;
+  color: #a6685d;
+  margin-left: 30%;
+  margin-right: 30%;
+  text-align: left;
+  padding: 0;
+  font-size: large;
+}
+h3 {
+  text-align: center;
+  margin: 0;
+  margin-block-end: 0%;
+}
+
+p#posname {
+  margin: 0;
+  text-align: left;
+  color: #a6685d;
+}
+
+h2#btntitle {
+  display: block;
+  color: #a6685d;
+  margin-left: 30%;
+  margin-right: 30%;
+  text-align: center;
+  padding: 0;
+}
+
+h2#bigbtntitle {
+  font-family: "Poppins", sans-serif;
+  color: white;
+  font-size: xx-large;
+}
+
+div.play {
+  display: block;
+  list-style-type: none;
+  margin-left: 33%;
+  margin-right: 33%;
+  padding: 1em;
+  border-radius: 25px;
+  border-style: hidden;
+  text-align: center;
+  background-color: #db8879;
+}
+
+/*error messaging*/
+
+div#error {
+  background-color: #de5062;
+  text-align: center;
+}
+ul.error {
+  background-color: #de5062;
+  list-style-type: none;
+  text-align: center;
+}
+
+div#success {
+  background-color: #a9b62a;
+  text-align: center;
+}
+
+div.formgroup {
+  display: block;
+  border-radius: 0%;
+  margin: auto;
+}
+
+input#name.form-control,
+input#email.form-control {
+  border-radius: 5px;
+  align-content: left;
+  border-color: white;
+}
+
+input#email.form-control {
+  padding-left: 0.1em;
+}
+
+h2 {
+  margin-top: 0;
+}
+
+li#lose {
+  color: white;
+  background-color: #de5062;
+  border-radius: 15px;
+  margin: 5%;
+  text-align: center;
+  align-content: center;
+}
