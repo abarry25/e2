@@ -39,45 +39,140 @@
         </div>
         <br>
         <div class="play">
+            <br>
             <h2 id="bigbtntitle">READY TO ROLL? </h2>
 
-            <div id='displaySubmit'>
-                <a href="http://e2p3.tablespoon.me/play/game">
-                    <button type='submit' class='btn'> Play </button> </a>
-            </div>
-            <br> <br>
-            <h3> Tell us more about you... </h3>
-            @if ($userSaved)
-                <div id="success"> Thank you, your information was submitted! </div>
-            @endif
-
-            <br>
-
-            <form method='POST' id='user-info' action='/play/users'>
-
-                <div class='formgroup'>
-                    <label for='name'>Name</label>
-                    <input type='text' class='form-control' name='name' id='name' value='{{ $app->old('name') }}'>
+            <form method='POST' action='/process'>
+                <div id='displaySubmit'>
+                    <button type='submit' class='btn' name='roll' label='roll'> Play </button> </a>
                 </div>
-
-                <div class=' formgroup'>
-                    <label for='email'>Email </label>
-                    <input type='email' name='email' id='email' class='form-control' value='{{ $app->old('email') }}'>
-                </div>
-                <br>
-
-                <button type='submit' class='btn'> Submit </button> </a>
             </form>
-            @if ($app->errorsExist())
-                <ul class='error'>
-                    @foreach ($app->errors() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
+
+            @if ($playerRoll)
+                <div class="play">
+                    <br>
+                    <h2 id="bigbtntitle"> RESULTS </h2>
+                    <ul class="results">
+                        <li> You rolled a {{ $pig1position }} + {{ $pig2position }} for a {{ $playerRoll }}</li>
+                    </ul>
+
+                    @if ($playerRoll == 'Pig Out')
+                        <img class='pigPos' src='images/pig_positions/pig_rightside.png' width=95px>
+                        <img class='pigPos' src='images/pig_positions/pig_leftside.png' width=100px>
+                        <br>
+                        <li id='lose'> You have {{ $rollScore }} points. You lose. Play again! </li>
+                        <div id='displaySubmit'>
+                            <a href="http://e2p3.tablespoon.me/game">
+                                <button type='submit' class='btn'> NEW GAME </button> </a>
+                        </div>
+                    @elseif ($playerRoll == 'Double Leaning Jowler')
+                        <img class='pigPos' src='images/pig_positions/pig_leaning.png' width=90px>
+                        <img class='pigPos' src='images/pig_positions/pig_leaning.png' width=90px>
+                        <br><br>
+                        <li id='continue'> You got {{ $rollScore }} points. You now have INSERT TOTAL total points.
+                            <br>Keep
+                            rolling!
+                        </li>
+                        <br><br>
+                        <form method='POST' action='/process'>
+                            <div id='displaySubmit'>
+                                <button type='submit' class='btn' name='roll' label='roll'> Play </button> </a>
+                            </div>
+                        </form>
+                    @elseif ($playerRoll== 'Double Razorback')
+                        <img class='pigPos' src='images/pig_positions/pig_back.png' width=100px>
+                        <img class='pigPos' src='images/pig_positions/pig_back.png' width=100px>
+                        <br><br>
+                        <li id='continue'> You got {{ $rollScore }} points. You now have INSERT TOTAL total points.
+                            <br>Keep
+                            rolling!
+                        </li>
+                        <br><br>
+                        <form method='POST' action='/process'>
+                            <div id='displaySubmit'>
+                                <button type='submit' class='btn' name='roll' label='roll'> Play </button> </a>
+                            </div>
+                        </form>
+                    @elseif ($playerRoll == 'Double Trotter')
+                        <img class='pigPos' src='images/pig_positions/pig_standing.png' width=100px>
+                        <img class='pigPos' src='images/pig_positions/pig_standing.png' width=100px>
+                        <br><br>
+                        <li id='continue'> You got {{ $rollScore }} points. You now have INSERT TOTAL total points.
+                            <br>
+                            Keep
+                            rolling!
+                        </li>
+                        <br><br>
+                        <form method='POST' action='/process'>
+                            <div id='displaySubmit'>
+                                <button type='submit' class='btn' name='roll' label='roll'> Play </button> </a>
+                            </div>
+                        </form>
+                    @elseif ($playerRoll == 'Double Snouter')
+                        <img class='pigPos' src='images/pig_positions/pig_snout.png' width=90px>
+                        <img class='pigPos' src='images/pig_positions/pig_snout.png' width=90px>
+                        <br><br>
+                        <li id='continue'> You got {{ $rollScore }} points. You now have INSERT TOTAL total points.
+                            <br> Keep
+                            rolling!
+                        </li>
+                        <br><br>
+                        <form method='POST' action='/process'>
+                            <div id='displaySubmit'>
+                                <button type='submit' class='btn' name='roll' label='roll'> Play </button> </a>
+                            </div>
+                        </form>
+                    @elseif ($playerRoll == 'Combo')
+                        <img class='pigPos' src='images/pig_positions/pig_flying3.png' width=125px>
+                        <br><br>
+                        <li id='continue'> You got {{ $rollScore }} points. You now have INSERT TOTAL total points.
+                            <br> Keep
+                            rolling!
+                        </li>
+                        <br><br>
+                        <form method='POST' action='/process'>
+                            <div id='displaySubmit'>
+                                <button type='submit' class='btn' name='roll' label='roll'> Play </button> </a>
+                            </div>
+                        </form>
+                    @elseif ($pig1position == 'left' and $pig2position == 'left')
+                        <img class='pigPos' src='images/pig_positions/pig_leftside.png' width=100px>
+                        <img class='pigPos' src='images/pig_positions/pig_leftside.png' width=100px>
+                        <br><br>
+                        <li id='continue'> You got {{ $rollScore }} points. You now have INSERT TOTAL total points.
+                            <br>
+                            Keep rolling!
+                        </li>
+                        <br><br>
+                        <form method='POST' action='/process'>
+                            <div id='displaySubmit'>
+                                <button type='submit' class='btn' name='roll' label='roll'> Play </button> </a>
+                            </div>
+                        </form>
+                    @elseif ($pig1position == 'right' and $pig2position == 'right')
+                        <img class='pigPos' src='images/pig_positions/pig_rightside.png' width=100px>
+                        <img class='pigPos' src='images/pig_positions/pig_rightside.png' width=100px>
+                        <br><br>
+                        <li id='continue'> You got {{ $rollScore }} points. You now have INSERT TOTAL total points.
+                            <br> Keep
+                            rolling!
+                        </li>
+                        <br><br>
+                        <form method='POST' action='/process'>
+                            <div id='displaySubmit'>
+                                <button type='submit' class='btn' name='roll' label='roll'> Play </button> </a>
+                            </div>
+                        </form>
+                    @else
+                        <li id='continue'> You have INSERT TOTAL points. Keep rolling! </li>
+                        <br><br>
+                        <form method='POST' action='/process'>
+                            <div id='displaySubmit'>
+                                <button type='submit' class='btn' name='roll' label='roll'> Play </button> </a>
+                            </div>
+                        </form>
+                    @endif
             @endif
-
-            <br>
-
+            <br><br>
     </body>
-
 @endsection
