@@ -210,11 +210,23 @@ h2#bigbtntitle {
   font-size: xx-large;
 }
 
+div.play1 {
+  display: block;
+  list-style-type: none;
+  margin-left: 30%;
+  margin-right: 30%;
+  padding: 0.5em;
+  border-radius: 25px;
+  border-style: hidden;
+  text-align: center;
+  background-color: #db8879;
+}
+
 div.play {
   display: block;
   list-style-type: none;
-  margin-left: 26%;
-  margin-right: 26%;
+  margin-left: 10%;
+  margin-right: 10%;
   padding: 0.5em;
   border-radius: 25px;
   border-style: hidden;
@@ -265,6 +277,35 @@ li#lose {
   background-color: #de5062;
   border-radius: 15px;
   margin: 5%;
+  text-align: center;
+  align-content: center;
+}
+
+li#win {
+  color: white;
+  font-size: larger;
+  background-color: #3db460;
+  border-radius: 15px;
+  margin: 5%;
+  text-align: center;
+  align-content: center;
+}
+
+div#rolls {
+  color: white;
+  border-style: double;
+  border-color: white;
+  margin: 5%;
+  width: 15px;
+  text-align: center;
+  align-content: center;
+}
+
+li#continue {
+  color: white;
+  font-size: larger;
+  margin-left: 10%;
+  margin-right: 10%;
   text-align: center;
   align-content: center;
 }

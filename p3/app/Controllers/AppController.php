@@ -1,6 +1,7 @@
 <?php
 namespace App\Controllers;
 
+
 class AppController extends Controller
 {
     /**
@@ -17,14 +18,20 @@ class AppController extends Controller
         $rollScore = $this->app->old('rollScore');
         $pig1position = $this->app->old('pig1position');
         $pig2position= $this->app->old('pig2position');
-        
-
+        $gameScore= $this->app->old('gameScore');
+        $gamelength= $this->app->old('gameLength');
+        $gameOver= $this->app->old('gameOver');
+        $gameIndex= $this->app->old('gameIndex');
         
         return $this->app->view('play', [
             'playerRoll'=> $playerRoll,
             'rollScore'=>  $rollScore,
             'pig1position'=> $pig1position,
-            'pig2position'=> $pig2position
+            'pig2position'=> $pig2position,
+            'gameScore' => $gameScore,
+            'gameLength'=> $gamelength,
+            'gameOver'=> $gameOver,
+            'gameIndex'=> $gameIndex,
         ]);
     }
 
@@ -46,34 +53,44 @@ class AppController extends Controller
     }
 
     public function process() {
-        // dump($this->app->inputAll());
+        $rounds = $this->app->db()->all('rounds');
 
+        $game_score = $rounds[0]['gameScore'];
+       
+        if ($rounds[0]['gameOver'] == 1) {
+            $game_index = $rounds[0]['gameIndex'] + 1;
+            $game_score = 0;
+        } else {
+            $game_index = $rounds[0]['gameIndex'];
+        }
+       
         $randNum = rand(0, 5);
  
         $pig_position = [
-     'left',
-     'right',
-     'standing',
-     'back',
-     'leaning',
-     'snout',
-     ];
+        'left',
+        'right',
+        'standing',
+        'back',
+        'leaning',
+        'snout',
+        ];
  
         $position_values = [
-     'left' => 0,
-     'right'=> 0,
-     'standing'=> 5,
-     'back'=> 5,
-     'leaning'=> 15,
-     'snout' => 10,
-     ];
- 
+        'left' => 0,
+        'right'=> 0,
+        'standing'=> 5,
+        'back'=> 5,
+        'leaning'=> 15,
+        'snout' => 10,
+        ];
+    
  
         # Creating an instance for these variables that will exist in the code
         $player_score = 0;
         $win_score = 100;
-       
-    
+        $game_over = 0;
+        $won = 0;
+
         $pig_a = rand(0, 5);
         $pig_b = rand(0, 5);
 
@@ -87,56 +104,92 @@ class AppController extends Controller
         if ($pig_a_position == $pig_b_position) {
             if (($pig_a_position == 'left' and $pig_b_position == 'left') or ($pig_a_position == 'right' and $pig_b_position == 'right')) {
                 $roll_score = 1;
-                $player_score = $player_score + $roll_score;
                 $combo_name = 'Sider';
+                $game_score = $roll_score + $game_score;
             } elseif ($pig_a_position == 'leaning' and $pig_b_position == 'leaning') {
                 $roll_score = 60;
-                $player_score = $player_score + $roll_score;
                 $combo_name = 'Double Leaning Jowler';
+                $game_score = $roll_score + $rounds[0]['gameScore'];
             } elseif ($pig_a_position == 'back' and $pig_b_position == 'back') {
                 $roll_score = 20;
-                $player_score = $player_score + $roll_score;
                 $combo_name = 'Double Razorback';
+                $game_score = $roll_score + $game_score;
             } elseif ($pig_a_position == 'standing' and $pig_b_position == 'standing') {
                 $roll_score = 20;
-                $player_score = $player_score + $roll_score;
                 $combo_name= 'Double Trotter';
+                $game_score = $roll_score + $game_score;
             } elseif ($pig_a_position == 'snout' and $pig_b_position == 'snout') {
                 $roll_score = 20;
-                $player_score = $player_score + $roll_score;
                 $combo_name = 'Double Snouter';
+                $game_score = $roll_score + $game_score;
             }
         } else {
             if (($pig_a_position == 'left' and $pig_b_position == 'right') or ($pig_a_position == 'right' and $pig_b_position == 'left')) {
                 $roll_score = 0;
                 $combo_name = 'Pig Out';
+                $game_score = 0;
+
             } else {
                 $roll_score = $position_values[$pig_a_position] + $position_values[$pig_b_position];
-                $player_score = $player_score + $roll_score;
                 $combo_name = 'Combo';
+                $game_score = $roll_score + $game_score;;
             }
+
         }
 
+        if (($game_score >= 100)) {
+            $won = 1;
+            $game_over = 1;
+
+        } elseif ($combo_name == 'Pig Out') {
+            $won = 0;
+            $game_over = 1;
+
+        }
+        
+
         # TO DO : PERSIST ROUND DETAILS TO THE DATABASE
+        // dump($game_over);
+        // dump($game_score);
+        // dump($combo_name);
+        // dump($game_index);
+        
+        
 
         $this->app->db()->insert('rounds', [
             'playerRoll'=> $combo_name,
             'rollScore' => $roll_score,
             'playerScore'=>$player_score,
-            'timestamp'=> date('Y-m-d H:i:s')
+            'gameScore'=> $game_score,
+            'timestamp'=> date('Y-m-d H:i:s'),
+            'gameOver'=> $game_over,
+            'gameIndex'=> $game_index,
+            
 
-]);
+        ]);
+    
+        $rounds2 = $this->app->db()->all('rounds');
 
-        return $this->app->redirect('/play', ['playerRoll'=> $combo_name, 'rollScore' => $roll_score, 'pig1position'=>$pig_a_position, 'pig2position'=>$pig_b_position, 'playerScore'=>$player_score]);
 
+        $game2 = $this->app->db()->findByColumn('rounds', 'gameIndex', '=', $rounds2[0]['gameIndex']);
+        $game_length = count($game2);
+
+
+        return $this->app->redirect('/play', [
+            'playerRoll'=> $combo_name,
+            'rollScore' => $roll_score, 
+            'pig1position'=> $pig_a_position,
+            'pig2position'=> $pig_b_position,
+            'playerScore'=> $player_score, 
+            'gameScore'=> $game_score,
+            'gameOver' => $game_over,
+            'gameIndex'=> $game_index,
+            'gameLength'=> $game_length]);
+        
 
     }
 
     
-     
-            //  return $this->app->view('process', [
-        //  'playerRoll' => $combo_name, 'rollScore' => $roll_score, 'pig1Position' => $pig_a_position, 'pig2Position' => $pig_b_position,
-        //  'playerScore' =>$player_score]);
         
     
 
@@ -149,15 +202,20 @@ class AppController extends Controller
     {
         $rounds = $this->app->db()->all('rounds');
     
-        return $this->app->view('history', ['rounds'=>$rounds]);
+        // return $this->app->view('history', ['rounds'=>$rounds]);
+
+        $game = $this->app->db()->findByColumn('rounds', 'gameIndex', '=', $rounds[0]['gameIndex']);
+
+        $maxGameIndex =  $rounds[0]['gameIndex'];
+        
+        return $this->app->view('history', ['rounds'=>$rounds, 'maxGameIndex'=>$maxGameIndex]);
     }
 
     public function round()
     {
-    
         $id = $this->app->param('id');
         $round = $this->app->db()->findByID('rounds', $id);
-        
+        dump($id);
         return $this->app->view('round', ['round' => $round]);
     }
 

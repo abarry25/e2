@@ -1,6 +1,7 @@
 @extends('templates.master')
 
 @section('title')
+
     Pass the Pigs!
 @endsection
 
@@ -12,12 +13,12 @@
 
     <body>
         <div class="title">
-            <h2> ROUND DETAILS</h2>
+            <h2> ROLL DETAILS</h2>
         </div>
         <a href='/history'>RETURN TO GAME HISTORY</a>
 
         <ul class='results'>
-            <li> On {{ $round['timestamp'] }}
+            <li>{{ $round['timestamp'] }}
             <li>
             <li> Round ID: {{ $round['id'] }}</li>
             <li> Player rolled a {{ $round['playerRoll'] }}</li>

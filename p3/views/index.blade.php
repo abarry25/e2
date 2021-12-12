@@ -21,9 +21,10 @@
                 <img class="pig" src="images/pig_home.png" alt="pig">
                 <div>
 
-                    <div>
-                        <a href="http://e2p3.tablespoon.me/play">
-                            <button type='submit' class='btn'>Play</button> </a>
-                    </div>
+                    <form method='POST' action='/process'>
+                        <div id='displaySubmit'>
+                            <button type='submit' class='btn' name='roll' label='roll'> Roll Again </button> </a>
+                        </div>
+                    </form>
     </body>
 @endsection
