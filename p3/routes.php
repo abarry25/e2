@@ -7,7 +7,7 @@ return [
     '/' => ['AppController', 'index'],
     '/play' => ['AppController', 'play'],
     '/process'=>['AppController', 'process'],
-    '/play/users' => ['AppController', 'saveUser'],
+    '/users' => ['AppController', 'saveUser'],
     '/history' => ['AppController', 'history'],
     '/round' => ['AppController', 'round'],
     '/rules' => ['AppController', 'rules'],

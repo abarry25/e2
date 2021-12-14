@@ -23,6 +23,11 @@ class AppCommand extends Command
             'gameIndex'=> 'int'
         ]);
 
+        $this->app->db()->createTable('users', [
+            'primaryName' =>  'text',
+        ]);
+        
+
         dump('Migrations Complete');
     }
 
@@ -41,6 +46,16 @@ class AppCommand extends Command
             ]);
             
         }
+
+        for ($i = 10; $i > 0; $i--) {
+            $this->app->db()->insert('users', [
+               'primaryName' => $faker->name,
+            ]);
+            
+        }
+
+
+
         dump('success!');
     }
 }

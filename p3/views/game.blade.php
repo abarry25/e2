@@ -38,16 +38,7 @@
             </p>
         </div>
         <br>
-        {{-- <div class="play">
-            <br>
-            <h2 id="bigbtntitle">READY TO ROLL? </h2>
 
-            <form method='POST' action='/process'>
-                <div id='displaySubmit'>
-                    <a href="http://e2p3.tablespoon.me/game">
-                        <button type='submit' class='btn' name='roll' label='roll'> Play </button> </a>
-                </div>
-            </form> --}}
         @if ($playerRoll)
             <div class="play">
                 <br>

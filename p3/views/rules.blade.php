@@ -32,7 +32,7 @@
             <li> <strong>Player</strong> stops rolling when they either reach 100, or they lose all their points in a "Pig
                 Out".</li>
             <li> If <strong>Player</strong> reaches 100pts without a "Pig Out", they win! </li>
-            <li> If <strong>Player</strong> attempts to get to 100 without pigging out and in the smallest amount of rolls.
+            <li> <strong>Player</strong> attempts to get to 100 without pigging out and in the smallest amount of rolls.
             </li>
         </ul>
 
@@ -102,14 +102,6 @@
             <br><br>
         </div>
 
-
-        @if ($app->errorsExist())
-            <ul class='error'>
-                @foreach ($app->errors() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        @endif
         <br><br>
 
         <button class='btn'><a href='/play'>Ready to play?</a></button>

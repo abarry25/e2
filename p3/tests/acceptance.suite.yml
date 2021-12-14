@@ -7,7 +7,7 @@
 actor: AcceptanceTester
 modules:
   enabled:
-    - Assets
+    - Asserts
     - PhpBrowser:
         url: http://e2p3.tablespoon.me
     - \Helper\Acceptance

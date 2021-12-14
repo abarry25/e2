@@ -1,15 +1,30 @@
-<!doctype html>
-<html lang='en'>
-<head>
+@extends('templates.master')
 
-	<title>404 Page Not Found</title>
-	<meta charset='utf-8'>
+@section('title')
+    Oink!
+@endsection
 
-</head>
-<body>
+@section('navigation')
+    <header></header>
+@endsection
 
-<h2>404 Page Not Found</h2>
-<a href='{{ $app->config('app.url') }}'>{{ $app->config('app.url') }}</a>
-	
-</body>
-</html>
+@section('content')
+
+    <head>
+        <div class="title">
+            <h1> OH NO! </h1>
+        </div>
+    </head>
+
+    <body>
+
+        <h2> LOOKS LIKE YOU'RE A BIT LOST.</h2>
+        <br>
+        <a href='{{ $app->config('app.url') }}'>HOME PAGE</a>
+        <img class="pig" src="images/pig_home.png" width=400px>
+        <br>
+
+    </body>
+
+    </html>
+@endsection

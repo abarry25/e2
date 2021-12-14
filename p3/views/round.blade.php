@@ -23,8 +23,9 @@
             <li> Round ID: {{ $round['id'] }}</li>
             <li> Player rolled a {{ $round['playerRoll'] }}</li>
             <li> Player scored {{ $round['rollScore'] }} points</li>
-            <ul>
-                <img class="pig" src="images/pig_home.png">
+        </ul>
+
+        <img class="pig" src="images/pig_home.png">
 
     </body>
 

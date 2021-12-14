@@ -4,12 +4,37 @@ namespace App\Controllers;
 
 class AppController extends Controller
 {
-    /**
-     * This method is triggered by the route "/"
-     */
+    
     public function index()
     {
-        return $this->app->view('index', []);
+        $userSaved= $this->app->old('userSaved');
+        $primaryName= $this->app->old('primaryName');
+
+        return $this->app->view('index', [
+            'userSaved' =>$userSaved,
+            'primaryName'=>$primaryName,
+        ]);
+    }
+
+
+    public function saveUser() {
+
+        $this->app->validate([
+            'primaryName' => 'required|minLength:2',
+        ]);
+
+        $primaryName = $this->app->input('primaryName');
+    
+        #to do : persist data to data base
+        $this->app->db()->insert('users', [
+            'primaryName'=> $primaryName
+        ] );
+
+        return $this->app->redirect('/', [
+            'userSaved' => true,
+            'primaryName'=> $primaryName,
+        ]);
+
     }
 
     public function play()
@@ -22,6 +47,7 @@ class AppController extends Controller
         $gamelength= $this->app->old('gameLength');
         $gameOver= $this->app->old('gameOver');
         $gameIndex= $this->app->old('gameIndex');
+        $won= $this->app->old('won');
         
         return $this->app->view('play', [
             'playerRoll'=> $playerRoll,
@@ -32,25 +58,10 @@ class AppController extends Controller
             'gameLength'=> $gamelength,
             'gameOver'=> $gameOver,
             'gameIndex'=> $gameIndex,
+            'won'=> $won,
         ]);
     }
 
-
-    public function saveUser() {
-
-        $this->app->validate([
-            'name' => 'required|minLength:2',
-            'email' => 'required|email'
-        ]);
-        
-        $name = $this->app->input('name');
-        $email = $this->app->input('email');
-
-    #to do : persist data to data base
-
-    return $this->app->redirect('/rules', ['userSaved' => true]);
-
-    }
 
     public function process() {
         $rounds = $this->app->db()->all('rounds');
@@ -58,7 +69,7 @@ class AppController extends Controller
         $game_score = $rounds[0]['gameScore'];
        
         if ($rounds[0]['gameOver'] == 1) {
-            $game_index = $rounds[0]['gameIndex'] + 1;
+            $game_index = $rounds[0]['gameIndex'] +1 ;
             $game_score = 0;
         } else {
             $game_index = $rounds[0]['gameIndex'];
@@ -140,22 +151,15 @@ class AppController extends Controller
         if (($game_score >= 100)) {
             $won = 1;
             $game_over = 1;
+          
 
         } elseif ($combo_name == 'Pig Out') {
             $won = 0;
             $game_over = 1;
-
         }
         
 
         # TO DO : PERSIST ROUND DETAILS TO THE DATABASE
-        // dump($game_over);
-        // dump($game_score);
-        // dump($combo_name);
-        // dump($game_index);
-        
-        
-
         $this->app->db()->insert('rounds', [
             'playerRoll'=> $combo_name,
             'rollScore' => $roll_score,
@@ -164,14 +168,10 @@ class AppController extends Controller
             'timestamp'=> date('Y-m-d H:i:s'),
             'gameOver'=> $game_over,
             'gameIndex'=> $game_index,
-            
-
         ]);
     
         $rounds2 = $this->app->db()->all('rounds');
-
-
-        $game2 = $this->app->db()->findByColumn('rounds', 'gameIndex', '=', $rounds2[0]['gameIndex']);
+        $game2 = $this->app->db()->findByColumn('rounds', 'gameIndex', '=', $game_index);
         $game_length = count($game2);
 
 
@@ -184,14 +184,9 @@ class AppController extends Controller
             'gameScore'=> $game_score,
             'gameOver' => $game_over,
             'gameIndex'=> $game_index,
+            'won' => $won,
             'gameLength'=> $game_length]);
-        
-
     }
-
-    
-        
-    
 
     public function roll()
     {
@@ -214,17 +209,19 @@ class AppController extends Controller
     public function round()
     {
         $id = $this->app->param('id');
+        $won = $this->app->param('won');
         $round = $this->app->db()->findByID('rounds', $id);
-        dump($id);
-        return $this->app->view('round', ['round' => $round]);
+        $winner = $this->app->db()->findByID('rounds', $won);
+       
+        return $this->app->view('round', [
+            'round' => $round,
+            'won' => $winner,
+    ]);
     }
 
     public function rules()
     {
-        $userSaved =$this->app->old('userSaved');
         return $this->app->view('rules', [
-            'userSaved' => $userSaved
-
         ]);
     }
 }

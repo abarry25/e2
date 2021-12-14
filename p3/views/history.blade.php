@@ -16,22 +16,13 @@
         </div>
 
         <img class="pig" src="images/pig_home.png" width=200px>
-        <a href='/play'>HOME</a>
-
+        <a href='/'>HOME</a>
         <ul class="results">
             @foreach ($rounds as $round)
-                <li><a href='/round?id={{ $round['id'] }}'>{{ $round['timestamp'] }}</li>
-
+                <li><a test='round-link' href='/round?id={{ $round['id'] }}'>{{ $round['timestamp'] }}</li>
             @endforeach
-
-
         </ul>
-
-
         <br><br>
-
-
-
     </body>
 
 @endsection
